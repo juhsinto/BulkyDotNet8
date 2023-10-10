@@ -1,11 +1,16 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace BulkyWeb.Models
 {
-	public class Category
-	{
-		public int Id { get; set; }
-		public String Name { get; set; }
-		public int DisplayOrder { get; set; }
-	}
+    public class Category
+    {
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public required String Name { get; set; }
+
+        public int DisplayOrder { get; set; }
+    }
 }
 
