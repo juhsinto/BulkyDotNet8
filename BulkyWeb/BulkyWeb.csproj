@@ -11,10 +11,12 @@
   <ItemGroup>
     <None Remove="Views\Product\" />
     <None Remove="Data\" />
+    <None Remove="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Product\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0-rc.1.23419.6" />
