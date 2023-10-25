@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace Bulky.DataAccess.Migrations
+namespace BulkyWebRazor_Temp.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class AddCategoryToDbAndSeedTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
