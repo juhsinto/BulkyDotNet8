@@ -12,11 +12,13 @@
     <None Remove="Views\Product\" />
     <None Remove="Areas\" />
     <None Remove="Areas\Admin\" />
+    <None Remove="Areas\Admin\Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Product\" />
     <Folder Include="Areas\" />
     <Folder Include="Areas\Admin\" />
+    <Folder Include="Areas\Admin\Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
