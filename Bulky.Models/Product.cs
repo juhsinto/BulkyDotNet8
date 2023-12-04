@@ -26,6 +26,8 @@ namespace BulkyWeb.Models
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
 
+        public string ImageUrl { get; set; }
+
         [Required]
         [Display(Name = "List Price")]
         [Range(1, 1000)]
