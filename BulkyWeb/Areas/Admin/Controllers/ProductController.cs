@@ -32,7 +32,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             return View(objProductList);
         }
 
-        public IActionResult Create()
+        public IActionResult UploadInsert(int? id)
         {
             ProductVM productVM = new()
             {
@@ -41,14 +41,22 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 {
                     Text = u.Name,
                     Value = u.Id.ToString()
-                })
+                }),
+                Product = new Product()
             };
-
-            return View(productVM);
+            if (id == null || id == 0)
+            {
+                return View(productVM);
+            } else
+            {
+                // update
+                productVM.Product = _unitOfWork.Product.Get(u => u.Id == id);
+                return View(productVM);
+            }
         }
 
         [HttpPost]
-        public IActionResult Create(ProductVM productVM) { 
+        public IActionResult UploadInsert(ProductVM productVM, IFormFile? file) { 
 
             // custom validation
             //if(obj.Name == obj.DisplayOrder.ToString()) {
@@ -81,48 +89,48 @@ namespace BulkyWeb.Areas.Admin.Controllers
             
         }
 
-        //? means nullable
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
+        ////? means nullable
+        //public IActionResult Edit(int? id)
+        //{
+        //    if (id == null || id == 0)
+        //    {
+        //        return NotFound();
+        //    }
 
-            Product? productFromDb = _unitOfWork.Product.Get(u=>u.Id == id);
+        //    Product? productFromDb = _unitOfWork.Product.Get(u=>u.Id == id);
 
-            //other ways
-            //Category? categoryFromDb1 = _db.Categories.FirstOrDefault(u => u.Name == "");
-            //Category? categoryFromDb2 = _db.Categories.FirstOrDefault(u => u.Name.Contains(""));
-            //Category? categoryFromDb3 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();
+        //    //other ways
+        //    //Category? categoryFromDb1 = _db.Categories.FirstOrDefault(u => u.Name == "");
+        //    //Category? categoryFromDb2 = _db.Categories.FirstOrDefault(u => u.Name.Contains(""));
+        //    //Category? categoryFromDb3 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();
 
-            if (productFromDb == null)
-            {
-                return NotFound();
-            }
+        //    if (productFromDb == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category
-               .GetAll().Select(u => new SelectListItem
-               {
-                   Text = u.Name,
-                   Value = u.Id.ToString()
-               });
-            ViewBag.CategoryList = CategoryList;
+        //    IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category
+        //       .GetAll().Select(u => new SelectListItem
+        //       {
+        //           Text = u.Name,
+        //           Value = u.Id.ToString()
+        //       });
+        //    ViewBag.CategoryList = CategoryList;
 
-            return View(productFromDb);
-        }
-        [HttpPost]
-        public IActionResult Edit(Product obj)
-        {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Update(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Product updated successfully";
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
+        //    return View(productFromDb);
+        //}
+        //[HttpPost]
+        //public IActionResult Edit(Product obj)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _unitOfWork.Product.Update(obj);
+        //        _unitOfWork.Save();
+        //        TempData["success"] = "Product updated successfully";
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View();
+        //}
 
         public IActionResult Delete(int? id)
         {

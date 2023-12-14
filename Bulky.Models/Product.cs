@@ -12,15 +12,15 @@ namespace BulkyWeb.Models
         public int Id { get; set; }
 
         [Required]
-        public required string Title { get; set; }
+        public string Title { get; set; }
 
-        public required string Description { get; set; }
-
-        [Required]
-        public required string ISBN { get; set; }
+        public string Description { get; set; }
 
         [Required]
-        public required string Author { get; set; }
+        public string ISBN { get; set; }
+
+        [Required]
+        public string Author { get; set; }
 
 
         public int CategoryId{ get; set; }
