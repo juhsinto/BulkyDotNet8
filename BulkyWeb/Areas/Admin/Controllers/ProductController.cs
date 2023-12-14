@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bulky.DataAccess.Data;
 using Bulky.DataAccess.Repository.IRepository;
+using Bulky.Models.ViewModels;
 using BulkyWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -33,20 +34,21 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category
+            ProductVM productVM = new()
+            {
+                CategoryList = _unitOfWork.Category
                 .GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Name,
                     Value = u.Id.ToString()
-                });
-            //ViewBag.CategoryList = CategoryList;
-            ViewData["CategoryList"] = CategoryList;
+                })
+            };
 
-            return View();
+            return View(productVM);
         }
 
         [HttpPost]
-        public IActionResult Create(Product obj) { 
+        public IActionResult Create(ProductVM productVM) { 
 
             // custom validation
             //if(obj.Name == obj.DisplayOrder.ToString()) {
@@ -61,12 +63,22 @@ namespace BulkyWeb.Areas.Admin.Controllers
             //}
 
             if (ModelState.IsValid) {
-                _unitOfWork.Product.Add(obj);
+                _unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");
+            } else
+            {
+                productVM.CategoryList = _unitOfWork.Category
+                    .GetAll().Select(u => new SelectListItem
+                    {
+                        Text = u.Name,
+                        Value = u.Id.ToString()
+                    });
+                    
+                return View(productVM);
             }
-            return View();
+            
         }
 
         //? means nullable
