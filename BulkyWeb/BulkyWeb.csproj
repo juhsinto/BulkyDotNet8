@@ -19,6 +19,8 @@
     <Folder Include="Areas\" />
     <Folder Include="Areas\Admin\" />
     <Folder Include="Areas\Admin\Views\Product\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\images\product\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
@@ -37,5 +39,9 @@
     <ProjectReference Include="..\Bulky.DataAccess\Bulky.DataAccess.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\images\" />
+    <Content Remove="wwwroot\images\product\" />
   </ItemGroup>
 </Project>
