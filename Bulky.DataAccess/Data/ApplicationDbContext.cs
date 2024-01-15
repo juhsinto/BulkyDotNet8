@@ -1,4 +1,5 @@
-﻿using BulkyWeb.Models;
+﻿using Bulky.Models;
+using BulkyWeb.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ namespace Bulky.DataAccess.Data
         {
             get; set;
         }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         // to seed data into db
         protected override void OnModelCreating(ModelBuilder modelBuilder)
