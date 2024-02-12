@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bulky.DataAccess.Data;
 using Bulky.DataAccess.Repository.IRepository;
+using Bulky.Utility;
 using BulkyWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BulkyWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
 
@@ -35,6 +38,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        //[Authorize(Roles = SD.Role_Admin)] //; can set access individually 
         public IActionResult Create(Category obj) { 
 
             // custom validation
