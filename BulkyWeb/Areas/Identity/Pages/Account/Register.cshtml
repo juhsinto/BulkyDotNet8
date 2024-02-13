@@ -6,7 +6,7 @@
 
 @*<h1>@ViewData["Title"]</h1>*@
 
-<div class="card shadow border-0 mt-4">
+<div class="card shadow border-0 mt-4 mb-3">
     <div class="card-header bg-secondary bg-gradient ml-0 py-4">
         <div class="row">
             <div class="col-12 text-center">
@@ -39,19 +39,58 @@
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
                     </div>
-                    
+                    <div class="row">
+                        <div class="form-floating mb-3 col-md-6">
+                            <input asp-for="Input.Name" class="form-control" placeholder="John Doe" />
+                            <label asp-for="Input.Name" class="ms-2 text-muted">Name</label>
+                            <span asp-validation-for="Input.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3 col-md-6">
+                            <input asp-for="Input.StreetAddress" class="form-control" placeholder="22 Glenmore St" />
+                            <label asp-for="Input.StreetAddress" class="ms-2 text-muted">StreetAddress</label>
+                            <span asp-validation-for="Input.StreetAddress" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-floating mb-3 col-md-6">
+                            <input asp-for="Input.City" class="form-control" placeholder="Melbourne" />
+                            <label asp-for="Input.City" class="ms-2 text-muted">City</label>
+                            <span asp-validation-for="Input.City" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3 col-md-6">
+                            <input asp-for="Input.State" class="form-control" placeholder="Victoria" />
+                            <label asp-for="Input.State" class="ms-2 text-muted">State</label>
+                            <span asp-validation-for="Input.State" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-floating mb-3 col-md-6">
+                            <input asp-for="Input.PostalCode" class="form-control" placeholder="3050" />
+                            <label asp-for="Input.PostalCode" class="ms-2 text-muted">PostalCode</label>
+                            <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3 col-md-6">
+                            <input asp-for="Input.PhoneNumber" class="form-control" placeholder="0434 850 XXX" />
+                            <label asp-for="Input.PhoneNumber" class="ms-2 text-muted">PhoneNumber</label>
+                            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
                     <div class="form-floating mb-3 col-md-6">
                         <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select">
                             <option disabled selected>-Select Role-</option>
                         </select>
                     </div>
+
                     <div class="col-12">
                         <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
                     </div>
-                    
                 </form>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 mb-3">
                 <section>
                     <p class="divider-text d-flex pt-3">or</p>
                     <h3>Use another service to register.</h3>
